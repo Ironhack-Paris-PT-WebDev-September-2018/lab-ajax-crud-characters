@@ -1,10 +1,13 @@
 class APIHandler {
   constructor(baseUrl) {
     this.BASE_URL = baseUrl;
+    this.myaxios = axios.create({
+      baseURL: this.BASE_URL
+    });
   }
 
   getFullList() {
-    axios.get(`${this.BASE_URL}/characters`).then(res =>
+    this.myaxios.get(`/characters`).then(res =>
       res.data.forEach(character => {
         createCard(
           character.name,
@@ -17,7 +20,7 @@ class APIHandler {
   }
 
   getOneRegister(id) {
-    axios.get(`${this.BASE_URL}/characters/${id}`).then(res => {
+    this.myaxios.get(`/characters/${id}`).then(res => {
       createCard(
         res.data.name,
         res.data.occupation,
@@ -35,7 +38,7 @@ class APIHandler {
       cartoon: cartoon
     };
 
-    axios.post(`${this.BASE_URL}/characters`, newCharacter)
+    this.myaxios.post(`/characters`, newCharacter)
       .then(() => {
         $("#send-data").css("background-color", "green");
         this.getFullList();
@@ -54,7 +57,7 @@ class APIHandler {
       cartoon: cartoon
     };
 
-    axios.patch(`${this.BASE_URL}/characters/${id}`, character)
+    this.myaxios.patch(`/characters/${id}`, character)
       .then(() => {
         $("#send-data").last().css("background-color", "green");
         this.getFullList();
@@ -66,8 +69,8 @@ class APIHandler {
   }
 
   deleteOneRegister(id) {
-    axios
-      .delete(`${this.BASE_URL}/characters/${id}`)
+    this.myaxios
+      .delete(`/characters/${id}`)
       .then(() => {
         $("#delete-one").css("background-color", "green");
         this.getFullList();

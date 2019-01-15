@@ -2,10 +2,10 @@
   "characters": [
     {
       "id": 1,
-      "name": "Han Solo",
-      "occupation": "Smuggler",
-      "weapon": "Blaster Pistol",
-      "cartoon": true
+      "name": "Danyel",
+      "occupation": "Hacker",
+      "weapon": "Fingers",
+      "cartoon": false
     },
     {
       "id": 2,
